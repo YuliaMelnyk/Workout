@@ -8,24 +8,35 @@ package com.mycompany.tamagochi1;
 import java.util.Scanner;
 
 /**
- *
  * @author Cristina
  */
 public abstract class Tamagotchi {
-     private String nombre; //nombre del Tamagochi
-      private byte hambre; //hambre del Tamagochi
-      private byte sueño; //Sueño del Tamagochi
-      private byte higiene; // suciedad del Tamagochi
-     private byte diversion;  //aburrimiento del Tamagochi
+    private String nombre; //nombre del Tamagochi
+    private byte hambre; //hambre del Tamagochi
+    private byte sueño; //Sueño del Tamagochi
+    private byte higiene; // suciedad del Tamagochi
+    private byte diversion;  //aburrimiento del Tamagochi
 
-   /**
-    * Constructor del Tamagochi
-    * @param nombre 
-    * @param hambre
-    * @param sueño
-    * @param higiene
-    * @param diversion 
-    */
+
+
+
+
+    public Tamagotchi(String nombre) {
+        this.nombre = nombre;
+        this.hambre = 100;
+        this.sueño = 100;
+        this.higiene = 100;
+        this.diversion = 100;
+    }
+    /**
+     * Constructor del Tamagochi
+     *
+     * @param nombre
+     * @param hambre
+     * @param sueño
+     * @param higiene
+     * @param diversion
+     */
     public Tamagotchi(String nombre, byte hambre, byte sueño, byte higiene, byte diversion) {
         this.nombre = nombre;
         this.hambre = hambre;
@@ -33,9 +44,10 @@ public abstract class Tamagotchi {
         this.higiene = higiene;
         this.diversion = diversion;
     }
-    
-        /**
+
+    /**
      * getter de nombre
+     *
      * @return nombre del Tamagochi
      */
     public String getNombre() {
@@ -44,7 +56,8 @@ public abstract class Tamagotchi {
 
     /**
      * setter de nombre
-     * @param nombre  nombre del Tamagochi
+     *
+     * @param nombre nombre del Tamagochi
      */
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -52,6 +65,7 @@ public abstract class Tamagotchi {
 
     /**
      * getter de hambre
+     *
      * @return hambre del Tamagochi
      */
     public byte getHambre() {
@@ -60,6 +74,7 @@ public abstract class Tamagotchi {
 
     /**
      * setter de hambre
+     *
      * @param hambre hambre del Tamagochi
      */
     public void setHambre(Byte hambre) {
@@ -68,6 +83,7 @@ public abstract class Tamagotchi {
 
     /**
      * getter de sueño
+     *
      * @return sueño del Tamagochi
      */
     public byte getSueño() {
@@ -76,6 +92,7 @@ public abstract class Tamagotchi {
 
     /**
      * setter de sueño
+     *
      * @param sueño suelo del Tamagochi
      */
     public void setSueño(byte sueño) {
@@ -84,6 +101,7 @@ public abstract class Tamagotchi {
 
     /**
      * getter de higiene
+     *
      * @return devuelve higiene del Tamagochi
      */
     public Byte getHigiene() {
@@ -92,7 +110,8 @@ public abstract class Tamagotchi {
 
     /**
      * setter de higiene
-     * @param higiene 
+     *
+     * @param higiene
      */
     public void setHigiene(Byte higiene) {
         this.higiene = higiene;
@@ -102,46 +121,38 @@ public abstract class Tamagotchi {
         return diversion;
     }
 
-    public void setAburrimiento(Byte diversion) {
+    public void setDiversion(byte diversion) {
         this.diversion = diversion;
     }
-    
-    
-    public Tamagotchi(String nombre){
-        this.nombre=nombre;
-        this.hambre=100;
-        this.sueño=100;   
-        this.higiene=100;
-        this.diversion=100;      
-         
-        
-    }
-    
-    public final static Tamagotchi nacer(){
+
+    public final static Tamagotchi nacer() {
         Scanner sc = new Scanner(System.in);
-            System.out.println("Dime una raza:");
-            String raza=sc.nextLine();
-            System.out.println("Dime un nombre");
-            String nombre=sc.nextLine();
-            Tamagotchi tamagotchi =null;
-        switch (raza){
+        System.out.println("Dime una raza:");
+        String raza = sc.nextLine();
+        System.out.println("Dime un nombre");
+        String nombre = sc.nextLine();
+
+        switch (raza) {
             case "Perro":
-                tamagotchi =new Perro (nombre);
-                break;
-                
+                Tamagotchi perro = new Perro(nombre);
+                Main.isRaza = true;
+                return perro;
+
             case "Pez":
-                tamagotchi =new Pez (nombre);
-                break;
-                
+                Tamagotchi pez  = new Pez(nombre);
+                Main.isRaza = true;
+                return pez;
+
             case "Pajaro":
-                tamagotchi =new Pajaro (nombre);
-                break;
-               
-                }
-      return tamagotchi;
+                Tamagotchi pajaro  = new Pajaro(nombre);
+                Main.isRaza = true;
+                return pajaro;
+            default:
+                Main.isRaza = false;
+        }
+        return null;
     }
-    
-    
+
 
     @Override
     public String toString() {
@@ -182,5 +193,5 @@ public abstract class Tamagotchi {
         diversion += 15;
     }
 
-            
+
 }
